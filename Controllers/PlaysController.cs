@@ -9,11 +9,15 @@ using AchimDaiana_Theater.Data;
 using AchimDaiana_Theater.Models;
 using Microsoft.Data.SqlClient;
 using static System.Reflection.Metadata.BlobBuilder;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace AchimDaiana_Theater.Controllers
 {
+    [Authorize(Roles = "Employee")]
     public class PlaysController : Controller
     {
+
         private readonly LibraryContext _context;
 
         public PlaysController(LibraryContext context)
@@ -22,6 +26,7 @@ namespace AchimDaiana_Theater.Controllers
         }
 
         // GET: Plays
+        [AllowAnonymous]
         public async Task<IActionResult> Index(string sortOrder,string currentFilter,string searchString,int? pageNumber)
         {
             var libraryContext = _context.Plays.Include(b => b.Writer);
@@ -70,6 +75,7 @@ namespace AchimDaiana_Theater.Controllers
         }
 
         // GET: Plays/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Plays == null)

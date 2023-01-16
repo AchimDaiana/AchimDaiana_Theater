@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AchimDaiana_Theater.Data;
 using AchimDaiana_Theater.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AchimDaiana_Theater.Controllers
 {
+    [Authorize(Policy = "AdministrationDirector")]
     public class CustomersController : Controller
     {
         private readonly LibraryContext _context;

@@ -40,6 +40,18 @@ builder.Services.AddAuthorization(opts => {
     });
 });
 
+builder.Services.AddAuthorization(opts => {
+    opts.AddPolicy("AdministrationDirector", policy => {
+        policy.RequireRole("Director");
+        policy.RequireClaim("Department", "Administration");
+    });
+});
+builder.Services.ConfigureApplicationCookie(opts =>
+{
+    opts.AccessDeniedPath = "/Identity/Account/AccessDenied";
+
+});
+
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
