@@ -1,0 +1,94 @@
+﻿@model AchimDaiana_Theater.Models.LibraryViewModels.TheaterIndexData
+@{
+    ViewData["Title"] = "Theaters";
+}
+
+
+<h1>Theaters</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Theater Name</th>
+            <th>Location</th>
+            <th>Plays</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Theaters) {
+            string selectedRow = "";
+            if (item.ID == (int?)ViewData["TheaterID"])
+            {
+                selectedRow = "success";
+            }
+      <tr class="@selectedRow">
+        <td>
+            @Html.DisplayFor(modelItem => item.TheaterName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+
+        <td>
+        @{
+            foreach (var play in item.TheaterPlays)
+                    {
+                    @play.Play.ID @: @play.Play.Title <br />
+                    }
+         }
+        </td>
+        <td>
+             <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
+             <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+             <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+             <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+        </td>
+       </tr>
+}
+    </tbody>
+</table>
+
+
+@if (Model.Plays != null)
+{
+    <h3>Plays theater by the selected Play</h3>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Writer</th>
+            <th>Price</th>
+            <th>Genre</th>
+
+        </tr>
+        @foreach (var item in Model.Plays)
+        {
+            string selectedRow = "";
+            if (item.ID == (int?)ViewData["PlayID"])
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "Index", new { playID = item.ID })
+                </td>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    @item.Writer
+                </td>
+                <td>
+                    @item.Price
+                </td>
+                <td>
+                    @item.Genre
+                </td>
+            </tr>
+        }
+    </table>
+}

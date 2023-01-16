@@ -12,6 +12,6 @@ namespace AchimDaiana_Theater.Models
 
         [StringLength(70)]
         public string Location { get; set; }
-        public ICollection<TheaterPlay>? TheaterPlays { get; set; }
+        public ICollection<TheaterPlay> TheaterPlays { get; set; }
     }
 }

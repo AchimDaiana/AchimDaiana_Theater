@@ -38,7 +38,7 @@ namespace AchimDaiana_Theater.Data
                 );*/
 
 
-                context.Customers.AddRange(
+               /* context.Customers.AddRange(
                 new Customer
                 {
                     FirstName = "Miruna",
@@ -54,7 +54,7 @@ namespace AchimDaiana_Theater.Data
 
                 );
 
-                context.SaveChanges();
+                context.SaveChanges();*/
             }
         }
     }
