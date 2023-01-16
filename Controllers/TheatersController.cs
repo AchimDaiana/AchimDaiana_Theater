@@ -9,9 +9,12 @@ using AchimDaiana_Theater.Data;
 using AchimDaiana_Theater.Models;
 using AchimDaiana_Theater.Models.LibraryViewModels;
 using System.Security.Policy;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AchimDaiana_Theater.Controllers
 {
+    [Authorize(Policy = "OnlyAdministration")]
+
     public class TheatersController : Controller
     {
         private readonly LibraryContext _context;
