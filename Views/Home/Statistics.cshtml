@@ -1,0 +1,26 @@
+﻿@model IEnumerable<AchimDaiana_Theater.Models.LibraryViewModels.ReservationGroup>
+@{
+    ViewData["Title"] = "Reserved Plays Statistics";
+}
+<h2>Reserved Plays Statistics</h2>
+<table>
+    <tr>
+        <th>
+            Reserved Date
+        </th>
+        <th>
+            Reserved Plays
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReservedDate)
+            </td>
+            <td>
+                @item.PlayCount
+            </td>
+        </tr>
+    }
+</table>
