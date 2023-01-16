@@ -45,7 +45,15 @@ namespace AchimDaiana_Theater.Controllers
 
             ViewData["CurrentFilter"] = searchString;
             var plays = from b in _context.Plays
-                        select b;
+                        join a in _context.Writers on a.WriterID equals a.WriterID
+                        select new Play
+                        {
+                            ID = b.ID,
+                            Title = b.Title,
+                            Price = b.Price,
+                            Genre = b.Genre,
+                            Writer = a
+                        };
 
             if (!String.IsNullOrEmpty(searchString))
             {
