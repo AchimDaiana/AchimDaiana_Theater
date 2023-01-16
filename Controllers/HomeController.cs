@@ -45,5 +45,11 @@ namespace AchimDaiana_Theater.Controllers
             };
             return View(await data.AsNoTracking().ToListAsync());
         }
+
+        public IActionResult Chat()
+        {
+            return View();
+        }
+
     }
 }
